@@ -42,9 +42,10 @@ public class FirstTimerRouter extends RouteBuilder{
 		 * Two Type of operation in Routes
 		 * 	1) Processing 2) Transformation
 		 * 1) Processing : Operation that doesn't make a change the body of message
-		 * .bean(beanName) can be used to processinh
+		 * .bean(beanName) can be used to processing
 		 * 2) Transformation: Operation that change the body of message 
-		 * (e.g transform, bean are example of transform as we change the body of message)
+		 * (e.g Transformation can be done using transform, bean or Processor.
+		 *   transform().constant(some modified message),.bean(getCurrentTimeBean) and  .bean(getCurrentTimeBean are the example of transform as we change the body of message)
 		 * .transform() or .bean(beanName) can be used to do transformation operation
 		 * 
 		 * */
