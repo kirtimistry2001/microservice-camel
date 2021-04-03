@@ -2,6 +2,8 @@ package ca.kirti.microservicecamel.router;
 
 import java.time.LocalDateTime;
 
+import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +48,7 @@ public class FirstTimerRouter extends RouteBuilder{
 		 * .transform() or .bean(beanName) can be used to do transformation operation
 		 * 
 		 * */
-		
+		 .process(new SimpleLoggingProcess())
 		.to("log:first-timer"); //e.g. you can save it to database using to
 	}
 
@@ -80,6 +82,21 @@ class LoggingProcessComponent{
 	 * that would not change the message body like saving it to database
 	 * */
 	public void process(String message) {
-			logger.info("Simple logging message");
+			logger.info("Simple logging message using Component", message);
+	}
+}
+
+/**
+ * Processor Bean
+ * @author Kirti
+ *
+ */
+class SimpleLoggingProcess implements Processor {
+
+	private Logger logger = LoggerFactory.getLogger(SimpleLoggingProcess.class);
+	@Override
+	public void process(Exchange exchange) throws Exception {
+		logger.info("Simple logging message using Processor",exchange.getMessage().getBody());
+
 	}
 }
