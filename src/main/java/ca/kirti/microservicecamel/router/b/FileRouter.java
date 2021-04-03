@@ -3,7 +3,7 @@ package ca.kirti.microservicecamel.router.b;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component disable the router
 public class FileRouter extends RouteBuilder{
 
 	
